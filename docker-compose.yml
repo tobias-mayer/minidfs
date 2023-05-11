@@ -1,0 +1,17 @@
+version: "3.9"
+services:
+  master:
+    image: "minidfs-cli:latest"
+    ports:
+      - "8000:8000"
+    command: "master --port 8000 --chunkSize 1000000"
+  chunkserver1:
+    image: "minidfs-cli:latest"
+    ports:
+      - "8001:8001"
+    command: "chunkserver --port 8001 --master http://master:8000/ --dir data"
+  chunkserver2:
+    image: "minidfs-cli:latest"
+    ports:
+      - "8002:8002"
+    command: "chunkserver --port 8002 --master http://master:8000/ --dir data"

@@ -12,5 +12,6 @@ RUN go build -o minidfs ./src
 FROM alpine:edge
 
 COPY --from=builder ["/build/minidfs", "/"]
+RUN mkdir data
 
 ENTRYPOINT ["/minidfs"]
